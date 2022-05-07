@@ -1,0 +1,49 @@
+﻿{% extends 'myapp/index.html' %}
+
+{% block content %}            
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Events List <small class="text-muted">Welcome to Digital Society</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Digital Society</a></li>
+                                                            {% comment %} <li class="breadcrumb-item">Pages</li> {% endcomment %}
+                                                                                        <li class="breadcrumb-item active">Events List</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid"> 
+<form action="{% url 'view-event' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}                
+    <div class="row clearfix">
+    <div class="col-lg-4">
+        <div class="card">
+            {% for i in all %}
+            <div class="body">
+                <h4><b>{{i.event_title}}</b></h4>
+                <a class="name"><b>Posted By: {{uid.role}}</b></a>
+                <h5><b>EVENT DATE : {{i.dob}}</b></h5>
+            </div>
+
+            
+            <div class="member-thumb">
+            <img src="{{i.pic.url}}" class="img-fluid" alt="profile-image">
+            </div> 
+            <h4>{{i.event_dis}}</h4>                              
+                                    
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</form>
+            </div>
+</section>
+{% endblock %}
+                
